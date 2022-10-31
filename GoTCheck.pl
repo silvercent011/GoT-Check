@@ -537,3 +537,31 @@ rightful_heir(X) :-								% Inarguable, faultess logic.
 	parent(robert_baratheon, X),
 	status(X, alive).
 
+%____________________________________________________________
+% HOUSE OF
+
+name_equals(A,B):- A=:=B, true;false.
+
+
+
+is_stark(X) :- X=="stark"; X=="snow".
+is_tyrell(X) :- X=="tyrell"; X=="hightower".
+is_targaryen(X) :- X=="targaryen".
+is_martell(X) :- X=="martell"; X=="sand".
+is_greyjoy(X) :- X=="greyjoy";X=="harlaw".
+is_lanniester(X) :- X=="lanniester".
+is_baratheon(X) :- X=="baratheon";X=="gendry".
+
+
+house_of(X,Y) :- 
+	split_string(X, "_","", Z),
+	reverse(Z, R),
+	nth0(0,R,U), 
+	(is_stark(U),Y = "Stark";
+	is_tyrell(U), Y = "Tyrell";
+	is_targaryen(U), Y = "Targaryen";
+	is_martell(U), Y = "Martell";
+	is_greyjoy(U), Y = "Greyjoy";
+	is_lanniester(U), Y = "Lanniester";
+	is_baratheon(U), Y = "Baratheon").
+
